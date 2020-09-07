@@ -7,8 +7,14 @@
 #include "monitoring/perf_context_imp.h"
 #include "monitoring/thread_status_util.h"
 #include "test_util/sync_point.h"
+#include <iostream>
+#include <stdio.h>
+#include <atomic>
+
+using namespace std;
 
 namespace ROCKSDB_NAMESPACE {
+
 namespace {
 #ifndef NPERF_CONTEXT
 Statistics* stats_for_report(Env* env, Statistics* stats) {
@@ -29,10 +35,17 @@ void InstrumentedMutex::Lock() {
   LockInternal();
 }
 
+std::atomic<int> counter(0);
+
 void InstrumentedMutex::LockInternal() {
 #ifndef NDEBUG
   ThreadStatusUtil::TEST_StateDelay(ThreadStatus::STATE_MUTEX_WAIT);
 #endif
+  counter++;
+  
+  //auto output = std::format("instrumentedmutexlock {} \n", counter);
+  auto currlock = "instrumentedMutexLock " + to_string(counter) + "\n";
+  cout << currlock;
   mutex_.Lock();
 }
 

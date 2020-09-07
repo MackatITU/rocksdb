@@ -39,6 +39,7 @@ PessimisticTransactionDB::PessimisticTransactionDB(
                           new TransactionDBMutexFactoryImpl())) {
   assert(db_impl_ != nullptr);
   info_log_ = db_impl_->GetDBOptions().info_log;
+  Header(info_log_, "magnus\n");
 }
 
 // Support initiliazing PessimisticTransactionDB from a stackable db

@@ -16,6 +16,7 @@ namespace ROCKSDB_NAMESPACE {
 // The order of items listed in  Tickers should be the same as
 // the order listed in TickersNameMap
 const std::vector<std::pair<Tickers, std::string>> TickersNameMap = {
+    {INSTRUMENTED_MUTEX_HITS, "rocksdb.instrumented.mutex.hits"},
     {BLOCK_CACHE_MISS, "rocksdb.block.cache.miss"},
     {BLOCK_CACHE_HIT, "rocksdb.block.cache.hit"},
     {BLOCK_CACHE_ADD, "rocksdb.block.cache.add"},

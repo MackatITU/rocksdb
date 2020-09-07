@@ -29,7 +29,9 @@ enum Tickers : uint32_t {
   // total block cache misses
   // REQUIRES: BLOCK_CACHE_MISS == BLOCK_CACHE_INDEX_MISS +
   //                               BLOCK_CACHE_FILTER_MISS +
-  //                               BLOCK_CACHE_DATA_MISS;
+  //  
+  //  BLOCK_CACHE_DATA_MISS;
+  INSTRUMENTED_MUTEX_HITS = 0,
   BLOCK_CACHE_MISS = 0,
   // total block cache hit
   // REQUIRES: BLOCK_CACHE_HIT == BLOCK_CACHE_INDEX_HIT +

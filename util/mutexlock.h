@@ -13,6 +13,8 @@
 #include <mutex>
 #include <thread>
 #include "port/port.h"
+#include "logging/logging.h"
+
 
 namespace ROCKSDB_NAMESPACE {
 
@@ -25,6 +27,19 @@ namespace ROCKSDB_NAMESPACE {
 //     MutexLock l(&mu_);       // mu_ is an instance variable
 //     ... some complex code, possibly with multiple return paths ...
 //   }
+/*
+class StringLogger : public Logger {
+  public:
+   using Logger::Logv;
+   void Logv(const char* format, va_list ap) override {
+     vsnprintf(buffer_, sizeof(buffer_), format, ap);
+   }
+   char* buffer() { return buffer_; }
+
+   private:
+   char buffer_[1000];
+};
+*/
 
 class MutexLock {
  public:
@@ -34,7 +49,8 @@ class MutexLock {
   // No copying allowed
   MutexLock(const MutexLock &) = delete;
   void operator=(const MutexLock &) = delete;
-
+  
+  //ROCKS_LOG_INFO(info_log, "hello magnus %s", "BOOM!");
   ~MutexLock() { this->mu_->Unlock(); }
 
  private:

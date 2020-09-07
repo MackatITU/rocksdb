@@ -12,7 +12,7 @@
 
 using namespace ROCKSDB_NAMESPACE;
 
-std::string kDBPath = "/tmp/rocksdb_simple_example";
+std::string kDBPath = "/tmp/mack_rocksdb_simple_example";
 
 int main() {
   DB* db;
@@ -20,6 +20,9 @@ int main() {
   // Optimize RocksDB. This is the easiest way to get RocksDB to perform well
   options.IncreaseParallelism();
   options.OptimizeLevelStyleCompaction();
+
+  options.statistics = CreateDBStatistics();
+
   // create the DB if it's not already present
   options.create_if_missing = true;
 
