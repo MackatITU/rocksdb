@@ -56,10 +56,15 @@ void InstrumentedCondVar::Wait() {
   WaitInternal();
 }
 
+std::atomic<int> counter2(0);
+
 void InstrumentedCondVar::WaitInternal() {
 #ifndef NDEBUG
   ThreadStatusUtil::TEST_StateDelay(ThreadStatus::STATE_MUTEX_WAIT);
 #endif
+  counter2++;
+  auto currlock = "instrumentedCondVar " + to_string(counter2) + "\n";
+  cout << currlock;
   cond_.Wait();
 }
 

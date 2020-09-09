@@ -20,6 +20,12 @@
 #include "util/thread_local.h"
 #include "utilities/transactions/pessimistic_transaction_db.h"
 
+#include <iostream>
+#include <stdio.h>
+#include <atomic>
+
+using namespace std;
+
 namespace ROCKSDB_NAMESPACE {
 
 struct LockInfo {
@@ -64,12 +70,12 @@ struct LockMap {
                    std::shared_ptr<TransactionDBMutexFactory> factory)
       : num_stripes_(num_stripes) {
     lock_map_stripes_.reserve(num_stripes);
+    cout << "TXN-MAN:lockmap \n";
     for (size_t i = 0; i < num_stripes; i++) {
       LockMapStripe* stripe = new LockMapStripe(factory);
       lock_map_stripes_.push_back(stripe);
     }
   }
-
   ~LockMap() {
     for (auto stripe : lock_map_stripes_) {
       delete stripe;
@@ -173,6 +179,7 @@ TransactionLockMgr::~TransactionLockMgr() {}
 
 size_t LockMap::GetStripe(const std::string& key) const {
   assert(num_stripes_ > 0);
+  cout << "TXN-MAN:getstripe \n";
   return fastrange64(GetSliceNPHash64(key), num_stripes_);
 }
 
@@ -220,7 +227,7 @@ std::shared_ptr<LockMap> TransactionLockMgr::GetLockMap(
   if (lock_maps_cache_->Get() == nullptr) {
     lock_maps_cache_->Reset(new LockMaps());
   }
-
+  cout << "TXN-MAN:getLockMap \n";
   auto lock_maps_cache = static_cast<LockMaps*>(lock_maps_cache_->Get());
 
   auto lock_map_iter = lock_maps_cache->find(column_family_id);
@@ -275,7 +282,7 @@ bool TransactionLockMgr::IsLockExpired(TransactionID txn_id,
       }
     }
   }
-
+  cout << "TXN-MAN:lockExpired \n";
   return expired;
 }
 
@@ -293,7 +300,7 @@ Status TransactionLockMgr::TryLock(PessimisticTransaction* txn,
 
     return Status::InvalidArgument(msg);
   }
-
+  cout << "TXN-MAN:tryLock \n";
   // Need to lock the mutex for the stripe that this key hashes to
   size_t stripe_num = lock_map->GetStripe(key);
   assert(lock_map->lock_map_stripes_.size() > stripe_num);
@@ -520,7 +527,7 @@ Status TransactionLockMgr::AcquireLocked(LockMap* lock_map,
                                          uint64_t* expire_time,
                                          autovector<TransactionID>* txn_ids) {
   assert(txn_lock_info.txn_ids.size() == 1);
-
+  
   Status result;
   // Check if this key is already locked
   auto stripe_iter = stripe->keys.find(key);
@@ -569,7 +576,7 @@ Status TransactionLockMgr::AcquireLocked(LockMap* lock_map,
     } else {
       // acquire lock
       stripe->keys.emplace(key, std::move(txn_lock_info));
-
+      cout << "TXN-MAN:aquireLockFromLockmap \n";
       // Maintain lock count if there is a limit on the number of locks
       if (max_num_locks_) {
         lock_map->lock_cnt++;
@@ -628,7 +635,7 @@ void TransactionLockMgr::UnLock(PessimisticTransaction* txn,
     // Column Family must have been dropped.
     return;
   }
-
+  cout << "TXN-MAN:unlock \n";
   // Lock the mutex for the stripe that this key hashes to
   size_t stripe_num = lock_map->GetStripe(key);
   assert(lock_map->lock_map_stripes_.size() > stripe_num);
@@ -681,7 +688,7 @@ void TransactionLockMgr::UnLock(const PessimisticTransaction* txn,
       for (const std::string* key : stripe_keys) {
         UnLockKey(txn, *key, stripe, lock_map, env);
       }
-
+      cout << "TXN-MAN:unlock \n";
       stripe->stripe_mutex->UnLock();
 
       // Signal waiting threads to retry locking
