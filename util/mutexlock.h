@@ -15,6 +15,10 @@
 #include "port/port.h"
 #include "logging/logging.h"
 
+#include "iostream"
+#include "stdio.h"
+
+using namespace std;
 
 namespace ROCKSDB_NAMESPACE {
 
@@ -44,13 +48,13 @@ class StringLogger : public Logger {
 class MutexLock {
  public:
   explicit MutexLock(port::Mutex *mu) : mu_(mu) {
+    cout << "mutexlock \n";    
     this->mu_->Lock();
   }
   // No copying allowed
   MutexLock(const MutexLock &) = delete;
   void operator=(const MutexLock &) = delete;
   
-  //ROCKS_LOG_INFO(info_log, "hello magnus %s", "BOOM!");
   ~MutexLock() { this->mu_->Unlock(); }
 
  private:
@@ -65,6 +69,7 @@ class MutexLock {
 class ReadLock {
  public:
   explicit ReadLock(port::RWMutex *mu) : mu_(mu) {
+    cout << "readlock \n";
     this->mu_->ReadLock();
   }
   // No copying allowed
@@ -82,7 +87,10 @@ class ReadLock {
 //
 class ReadUnlock {
  public:
-  explicit ReadUnlock(port::RWMutex *mu) : mu_(mu) { mu->AssertHeld(); }
+  explicit ReadUnlock(port::RWMutex *mu) : mu_(mu) { 
+    cout << "readunlock \n"; 
+    mu->AssertHeld();
+  }
   // No copying allowed
   ReadUnlock(const ReadUnlock &) = delete;
   ReadUnlock &operator=(const ReadUnlock &) = delete;
@@ -101,7 +109,8 @@ class ReadUnlock {
 class WriteLock {
  public:
   explicit WriteLock(port::RWMutex *mu) : mu_(mu) {
-    this->mu_->WriteLock();
+   cout << "writelock \n"; 
+   this->mu_->WriteLock();
   }
   // No copying allowed
   WriteLock(const WriteLock &) = delete;
@@ -132,6 +141,7 @@ class SpinMutex {
   void lock() {
     for (size_t tries = 0;; ++tries) {
       if (try_lock()) {
+        cout << "spinmutexlock \n";
         // success
         break;
       }
