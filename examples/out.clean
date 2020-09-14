@@ -1,0 +1,6 @@
+writelock 2
+readlock 1
+MemTable:addvalue 6
+instrumentedCondVar 2
+mutexlock 305
+instrumentedMutexLock 52
