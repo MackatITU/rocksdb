@@ -120,249 +120,320 @@ writelock
 mutexlock 
 mutexlock 
 mutexlock 
-mutexlock 
-mutexlock 
-mutexlock 
-mutexlock 
-mutexlock 
-mutexlock 
-mutexlock 
-mutexlock 
-mutexlock 
-mutexlock 
-mutexlock 
-mutexlock 
-mutexlock 
-mutexlock 
-MemTable:addvalue 
-MemTable:addvalue 
-MemTable:addvalue 
-mutexlock 
-mutexlock 
-mutexlock 
-mutexlock 
-mutexlock 
-mutexlock 
-mutexlock 
 instrumentedMutexLock 2
-mutexlock 
-mutexlock 
-mutexlock 
 instrumentedMutexLock 3
 instrumentedMutexLock 4
-mutexlock 
 instrumentedMutexLock 5
+mutexlock 
+mutexlock 
+mutexlock 
+mutexlock 
+mutexlock 
+mutexlock 
+mutexlock 
+mutexlock 
+mutexlock 
+mutexlock 
+mutexlock 
+mutexlock 
+mutexlock 
+mutexlock 
+mutexlock 
+mutexlock 
+mutexlock 
+mutexlock 
+mutexlock 
+mutexlock 
+mutexlock 
+mutexlock 
+mutexlock 
+mutexlock 
+mutexlock 
+mutexlock 
+mutexlock 
+mutexlock 
+mutexlock 
+mutexlock 
+mutexlock 
+mutexlock 
+mutexlock 
+mutexlock 
+mutexlock 
+mutexlock 
+mutexlock 
+mutexlock 
+mutexlock 
+mutexlock 
+mutexlock 
+mutexlock 
+mutexlock 
+mutexlock 
+mutexlock 
+mutexlock 
+mutexlock 
+mutexlock 
 instrumentedMutexLock 6
 instrumentedMutexLock 7
 instrumentedMutexLock 8
-mutexlock 
-mutexlock 
-mutexlock 
-mutexlock 
-mutexlock 
-mutexlock 
-mutexlock 
-mutexlock 
-mutexlock 
-mutexlock 
-mutexlock 
-mutexlock 
-mutexlock 
-mutexlock 
-mutexlock 
-mutexlock 
-mutexlock 
-mutexlock 
-mutexlock 
-mutexlock 
-mutexlock 
-mutexlock 
-mutexlock 
-mutexlock 
-mutexlock 
-mutexlock 
-mutexlock 
-mutexlock 
-mutexlock 
-mutexlock 
-mutexlock 
-mutexlock 
-mutexlock 
-mutexlock 
-mutexlock 
-mutexlock 
-mutexlock 
-mutexlock 
-mutexlock 
-mutexlock 
-mutexlock 
-mutexlock 
-mutexlock 
-mutexlock 
-mutexlock 
-mutexlock 
-mutexlock 
-mutexlock 
 instrumentedMutexLock 9
+mutexlock 
 instrumentedMutexLock 10
 instrumentedMutexLock 11
 instrumentedMutexLock 12
 instrumentedMutexLock 13
-mutexlock 
-mutexlock 
-mutexlock 
-mutexlock 
-mutexlock 
 instrumentedMutexLock 14
 instrumentedMutexLock 15
+mutexlock 
+mutexlock 
 instrumentedMutexLock 16
 instrumentedMutexLock 17
 instrumentedMutexLock 18
 instrumentedMutexLock 19
+TXN-MAN:lockmap 
+mutexlock 
+mutexlock 
+mutexlock 
+mutexlock 
+mutexlock 
+mutexlock 
+mutexlock 
+mutexlock 
+mutexlock 
+mutexlock 
+mutexlock 
+mutexlock 
+mutexlock 
+mutexlock 
+mutexlock 
+mutexlock 
 instrumentedMutexLock 20
 instrumentedMutexLock 21
 instrumentedMutexLock 22
 mutexlock 
-mutexlock 
-mutexlock 
-mutexlock 
-mutexlock 
-mutexlock 
-mutexlock 
-mutexlock 
-mutexlock 
-MemTable:addvalue 
-mutexlock 
-mutexlock 
 instrumentedMutexLock 23
 instrumentedMutexLock 24
-MemTable:addvalue 
-MemTable:addvalue 
+mutexlock 
 instrumentedMutexLock 25
+mutexlock 
+mutexlock 
+mutexlock 
+mutexlock 
+mutexlock 
+mutexlock 
+mutexlock 
+mutexlock 
+mutexlock 
+mutexlock 
+mutexlock 
+mutexlock 
+mutexlock 
+mutexlock 
+mutexlock 
+mutexlock 
+mutexlock 
+mutexlock 
+mutexlock 
+mutexlock 
+mutexlock 
+mutexlock 
+mutexlock 
+mutexlock 
+mutexlock 
+mutexlock 
+mutexlock 
+mutexlock 
+mutexlock 
+mutexlock 
+mutexlock 
+mutexlock 
+mutexlock 
+mutexlock 
+mutexlock 
+mutexlock 
+mutexlock 
+mutexlock 
+mutexlock 
+mutexlock 
+mutexlock 
+mutexlock 
+mutexlock 
+mutexlock 
+mutexlock 
+mutexlock 
+mutexlock 
 mutexlock 
 instrumentedMutexLock 26
 instrumentedMutexLock 27
 instrumentedMutexLock 28
-instrumentedCondVar 1
+mutexlock 
 mutexlock 
 instrumentedMutexLock 29
+mutexlock 
+TXN-MAN:getLockMap 
 instrumentedMutexLock 30
+TXN-MAN:tryLock 
+TXN-MAN:getstripe 
+TXN-MAN:aquireLockFromLockmap 
+TXN-MAN:getLockMap 
+TXN-MAN:tryLock 
+TXN-MAN:getstripe 
+TXN-MAN:aquireLockFromLockmap 
 instrumentedMutexLock 31
+MemTable:addvalue 
+TXN-MAN:getLockMap 
+TXN-MAN:getstripe 
+TXN-MAN:unlock 
+TXN-MAN:getLockMap 
+TXN-MAN:tryLock 
+TXN-MAN:getstripe 
 instrumentedMutexLock 32
 instrumentedMutexLock 33
+MemTable:addvalue 
+TXN-MAN:getLockMap 
+TXN-MAN:getstripe 
+TXN-MAN:unlock 
 instrumentedMutexLock 34
-instrumentedCondVar 2
-mutexlock 
-mutexlock 
-mutexlock 
-mutexlock 
-mutexlock 
-mutexlock 
-mutexlock 
-mutexlock 
-mutexlock 
+TXN-MAN:getLockMap 
+TXN-MAN:tryLock 
+TXN-MAN:getstripe 
+TXN-MAN:aquireLockFromLockmap 
 instrumentedMutexLock 35
-mutexlock 
-mutexlock 
-mutexlock 
+MemTable:addvalue 
+TXN-MAN:getLockMap 
+TXN-MAN:getstripe 
+TXN-MAN:unlock 
+TXN-MAN:getLockMap 
+TXN-MAN:tryLock 
+TXN-MAN:getstripe 
+TXN-MAN:aquireLockFromLockmap 
+TXN-MAN:getLockMap 
+TXN-MAN:unlock 
+TXN-MAN:getstripe 
 instrumentedMutexLock 36
-mutexlock 
-mutexlock 
-mutexlock 
-mutexlock 
-mutexlock 
-mutexlock 
-mutexlock 
 instrumentedMutexLock 37
-mutexlock 
-mutexlock 
 instrumentedMutexLock 38
-mutexlock 
-mutexlock 
+TXN-MAN:getLockMap 
+TXN-MAN:tryLock 
+TXN-MAN:getstripe 
+TXN-MAN:aquireLockFromLockmap 
+TXN-MAN:getLockMap 
+TXN-MAN:tryLock 
+TXN-MAN:getstripe 
+TXN-MAN:aquireLockFromLockmap 
 instrumentedMutexLock 39
+MemTable:addvalue 
+TXN-MAN:getLockMap 
+TXN-MAN:getstripe 
+TXN-MAN:unlock 
 instrumentedMutexLock 40
 instrumentedMutexLock 41
 instrumentedMutexLock 42
+TXN-MAN:getLockMap 
+TXN-MAN:tryLock 
+TXN-MAN:getstripe 
+TXN-MAN:aquireLockFromLockmap 
+TXN-MAN:getLockMap 
+TXN-MAN:getstripe 
+TXN-MAN:unlock 
 instrumentedMutexLock 43
+MemTable:addvalue 
+TXN-MAN:getLockMap 
+TXN-MAN:getstripe 
+TXN-MAN:unlock 
 instrumentedMutexLock 44
+mutexlock 
 instrumentedMutexLock 45
+mutexlock 
 instrumentedMutexLock 46
 instrumentedMutexLock 47
-mutexlock 
-mutexlock 
-mutexlock 
-mutexlock 
-mutexlock 
-mutexlock 
-mutexlock 
-mutexlock 
-mutexlock 
-mutexlock 
-mutexlock 
-mutexlock 
-mutexlock 
-mutexlock 
-mutexlock 
-mutexlock 
-mutexlock 
-mutexlock 
-mutexlock 
-mutexlock 
-mutexlock 
-mutexlock 
-mutexlock 
-mutexlock 
-mutexlock 
-mutexlock 
-mutexlock 
-mutexlock 
-mutexlock 
-mutexlock 
-mutexlock 
-mutexlock 
-mutexlock 
-mutexlock 
-mutexlock 
-mutexlock 
-mutexlock 
-mutexlock 
-mutexlock 
-mutexlock 
-mutexlock 
-mutexlock 
-mutexlock 
-mutexlock 
-mutexlock 
-mutexlock 
-mutexlock 
-mutexlock 
-mutexlock 
-mutexlock 
-mutexlock 
-mutexlock 
-mutexlock 
-mutexlock 
-mutexlock 
-mutexlock 
-mutexlock 
-mutexlock 
-mutexlock 
-mutexlock 
-mutexlock 
-mutexlock 
-mutexlock 
-mutexlock 
-mutexlock 
 instrumentedMutexLock 48
+instrumentedMutexLock 49
+instrumentedMutexLock 50
+instrumentedMutexLock 51
+instrumentedMutexLock 52
+instrumentedMutexLock 53
+instrumentedMutexLock 54
+instrumentedMutexLock 55
+instrumentedMutexLock 56
+instrumentedMutexLock 57
+instrumentedMutexLock 58
+mutexlock 
+mutexlock 
+mutexlock 
+mutexlock 
+mutexlock 
+mutexlock 
+mutexlock 
+mutexlock 
+mutexlock 
+mutexlock 
+mutexlock 
+mutexlock 
+mutexlock 
+mutexlock 
+mutexlock 
+mutexlock 
+mutexlock 
+mutexlock 
+mutexlock 
+mutexlock 
+mutexlock 
+mutexlock 
+mutexlock 
+mutexlock 
+mutexlock 
+mutexlock 
+mutexlock 
+mutexlock 
+mutexlock 
+mutexlock 
+mutexlock 
+mutexlock 
+mutexlock 
+mutexlock 
+mutexlock 
+mutexlock 
+mutexlock 
+mutexlock 
+mutexlock 
+mutexlock 
+mutexlock 
+mutexlock 
+mutexlock 
+mutexlock 
+mutexlock 
+mutexlock 
+mutexlock 
+mutexlock 
+mutexlock 
+mutexlock 
+mutexlock 
+mutexlock 
+mutexlock 
+mutexlock 
+mutexlock 
+mutexlock 
+mutexlock 
+mutexlock 
+mutexlock 
+mutexlock 
+mutexlock 
+mutexlock 
+mutexlock 
+mutexlock 
+mutexlock 
+instrumentedMutexLock 59
 writelock 
 mutexlock 
 mutexlock 
 mutexlock 
+instrumentedMutexLock 60
+instrumentedMutexLock 61
 mutexlock 
+instrumentedMutexLock 62
 mutexlock 
-instrumentedMutexLock 49
-instrumentedMutexLock 50
+instrumentedMutexLock 63
 mutexlock 
-instrumentedMutexLock 51
-instrumentedMutexLock 52
+instrumentedMutexLock 64
+instrumentedMutexLock 65
 mutexlock 
