@@ -37,6 +37,8 @@
 #include "util/autovector.h"
 #include "util/coding.h"
 #include "util/mutexlock.h"
+#include <iostream>
+#include <stdio.h>
 
 namespace ROCKSDB_NAMESPACE {
 
@@ -454,6 +456,7 @@ FragmentedRangeTombstoneIterator* MemTable::NewRangeTombstoneIterator(
 }
 
 port::RWMutex* MemTable::GetLock(const Slice& key) {
+  cout << "MemTable:GetLock \n";
   return &locks_[fastrange64(GetSliceNPHash64(key), locks_.size())];
 }
 
@@ -528,6 +531,7 @@ bool MemTable::Add(SequenceNumber s, ValueType type,
 
     // this is a bit ugly, but is the way to avoid locked instructions
     // when incrementing an atomic
+    cout << "MemTable:addvalue \n";
     num_entries_.store(num_entries_.load(std::memory_order_relaxed) + 1,
                        std::memory_order_relaxed);
     data_size_.store(data_size_.load(std::memory_order_relaxed) + encoded_len,
@@ -694,6 +698,7 @@ static bool SaveValue(void* arg, const char* entry) {
         FALLTHROUGH_INTENDED;
       case kTypeValue: {
         if (s->inplace_update_support) {
+          cout << "MemTable:savevalue";
           s->mem->GetLock(s->key->user_key())->ReadLock();
         }
         Slice v = GetLengthPrefixedSlice(key_ptr + key_length);
@@ -721,6 +726,7 @@ static bool SaveValue(void* arg, const char* entry) {
           s->value->assign(v.data(), v.size());
         }
         if (s->inplace_update_support) {
+	  cout << "MemTable:savevalue \n";
           s->mem->GetLock(s->key->user_key())->ReadUnlock();
         }
         *(s->found_final_value) = true;
@@ -1004,7 +1010,8 @@ void MemTable::Update(SequenceNumber seq,
         if (new_size <= prev_size) {
           char* p =
               EncodeVarint32(const_cast<char*>(key_ptr) + key_length, new_size);
-          WriteLock wl(GetLock(lkey.user_key()));
+          cout << "MemTable:updatevalue \n";
+	  WriteLock wl(GetLock(lkey.user_key()));
           memcpy(p, value.data(), value.size());
           assert((unsigned)((p + value.size()) - entry) ==
                  (unsigned)(VarintLength(key_length) + key_length +

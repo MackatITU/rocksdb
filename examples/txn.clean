@@ -4,6 +4,7 @@ writelock 2
 readlock 1
 TXN-MAN:getstripe 15
 TXN-MAN:aquireLockFromLockmap 7
+MemTable:addvalue 5
 TXN-MAN:tryLock 8
 mutexlock 313
 instrumentedMutexLock 65
