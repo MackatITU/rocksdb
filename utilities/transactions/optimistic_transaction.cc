@@ -20,6 +20,9 @@
 #include "utilities/transactions/transaction_util.h"
 #include "utilities/transactions/optimistic_transaction.h"
 #include "utilities/transactions/optimistic_transaction_db_impl.h"
+#include <stdio.h>
+#include <iostream>
+
 
 namespace ROCKSDB_NAMESPACE {
 
@@ -143,6 +146,7 @@ Status OptimisticTransaction::TryLock(ColumnFamilyHandle* column_family,
                                       const Slice& key, bool read_only,
                                       bool exclusive, const bool do_validate,
                                       const bool assume_tracked) {
+  std::cout << "optimisticTXN:TryLock \n";
   assert(!assume_tracked);  // not supported
   (void)assume_tracked;
   if (!do_validate) {

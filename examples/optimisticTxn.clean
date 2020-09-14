@@ -1,0 +1,7 @@
+writelock 2
+optimisticTXN:TryLock 5
+readlock 1
+MemTable:addvalue 6
+optimisticTXN:LoadBucket 4
+mutexlock 243
+instrumentedMutexLock 53

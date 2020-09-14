@@ -15,6 +15,8 @@
 #include "rocksdb/options.h"
 #include "rocksdb/utilities/optimistic_transaction_db.h"
 #include "utilities/transactions/optimistic_transaction.h"
+#include <iostream>
+#include <stdio.h> 
 
 namespace ROCKSDB_NAMESPACE {
 
@@ -32,6 +34,7 @@ Transaction* OptimisticTransactionDBImpl::BeginTransaction(
 std::unique_lock<std::mutex> OptimisticTransactionDBImpl::LockBucket(
     size_t idx) {
   assert(idx < bucketed_locks_.size());
+  std::cout << "optimisticTXN:LoadBucket \n";
   return std::unique_lock<std::mutex>(*bucketed_locks_[idx]);
 }
 
