@@ -1,5 +1,0 @@
-writelock 2
-readlock 1
-MemTable:addvalue 6
-mutexlock 243
-instrumentedMutexLock 53
