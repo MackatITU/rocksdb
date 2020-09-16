@@ -24,6 +24,9 @@
 #include <unistd.h>
 #include <cstdlib>
 #include "logging/logging.h"
+#include <stdio.h>
+#include <iostream>
+
 
 namespace ROCKSDB_NAMESPACE {
 
@@ -57,6 +60,7 @@ Mutex::Mutex(bool adaptive) {
   if (!adaptive) {
     PthreadCall("init mutex", pthread_mutex_init(&mu_, nullptr));
   } else {
+    std::cout << "PortPosix:Mutex \n";
     pthread_mutexattr_t mutex_attr;
     PthreadCall("init mutex attr", pthread_mutexattr_init(&mutex_attr));
     PthreadCall("set mutex attr",
@@ -74,6 +78,7 @@ Mutex::Mutex(bool adaptive) {
 Mutex::~Mutex() { PthreadCall("destroy mutex", pthread_mutex_destroy(&mu_)); }
 
 void Mutex::Lock() {
+  std::cout << "PortPosix:Lock\n";
   PthreadCall("lock", pthread_mutex_lock(&mu_));
 #ifndef NDEBUG
   locked_ = true;
@@ -140,14 +145,21 @@ void CondVar::SignalAll() {
 }
 
 RWMutex::RWMutex() {
+  std::cout << "PortPosix:RWMutex \n";
   PthreadCall("init mutex", pthread_rwlock_init(&mu_, nullptr));
 }
 
 RWMutex::~RWMutex() { PthreadCall("destroy mutex", pthread_rwlock_destroy(&mu_)); }
 
-void RWMutex::ReadLock() { PthreadCall("read lock", pthread_rwlock_rdlock(&mu_)); }
+void RWMutex::ReadLock() {
+  std::cout << "PortPosix:RWLockRead \n";
+  PthreadCall("read lock", pthread_rwlock_rdlock(&mu_)); 
+}
 
-void RWMutex::WriteLock() { PthreadCall("write lock", pthread_rwlock_wrlock(&mu_)); }
+void RWMutex::WriteLock() { 
+  std::cout << "PortPosix:RWLockWrite \n";
+  PthreadCall("write lock", pthread_rwlock_wrlock(&mu_));
+}
 
 void RWMutex::ReadUnlock() { PthreadCall("read unlock", pthread_rwlock_unlock(&mu_)); }
 

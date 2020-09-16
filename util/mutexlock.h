@@ -200,6 +200,7 @@ class Striped {
   T *get(const P &key) {
     uint64_t h = hash_(key);
     size_t index = h % stripes_;
+    cout << "Striped:GetLock \n";
     return &reinterpret_cast<LockData<T> *>(&locks_[index])->lock_;
   }
 

@@ -1,0 +1,10 @@
+PortPosix:RWLockRead 1
+writelock 2
+PortPosix:Mutex 1
+readlock 1
+PortPosix:RWLockWrite 2
+MemTable:addvalue 6
+PortPosix:Lock 311
+PortPosix:RWMutex 1
+mutexlock 266
+instrumentedMutexLock 43
