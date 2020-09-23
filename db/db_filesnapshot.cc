@@ -20,6 +20,9 @@
 #include "rocksdb/env.h"
 #include "test_util/sync_point.h"
 #include "util/mutexlock.h"
+#include <stdio.h>
+#include <iostream>
+
 
 namespace ROCKSDB_NAMESPACE {
 
@@ -29,8 +32,9 @@ Status DBImpl::GetLiveFiles(std::vector<std::string>& ret,
   *manifest_file_size = 0;
 
   mutex_.Lock();
-
+  
   if (flush_memtable) {
+    std::cout << "db_filesnaphot:GetLiveFiles \n";
     // flush all dirty data to disk.
     Status status;
     if (immutable_db_options_.atomic_flush) {
@@ -115,6 +119,7 @@ Status DBImpl::GetSortedWalFiles(VectorLogPtr& files) {
     // files are going to be purged. Additional purges won't be scheduled as
     // long as deletions are disabled (so the below loop must terminate).
     InstrumentedMutexLock l(&mutex_);
+    std::cout << "db_filesnapshot:GetSortedWalFiles \n";
     while (disable_delete_obsolete_files_ > 0 &&
            pending_purge_obsolete_files_ > 0) {
       bg_cv_.Wait();
@@ -127,6 +132,7 @@ Status DBImpl::GetCurrentWalFile(std::unique_ptr<LogFile>* current_log_file) {
   uint64_t current_logfile_number;
   {
     InstrumentedMutexLock l(&mutex_);
+    std::cout << "db_filesnapshot:GetCurrentWalFile \n";
     current_logfile_number = logfile_number_;
   }
 

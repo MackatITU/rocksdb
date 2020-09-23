@@ -242,7 +242,7 @@ Status DBImpl::WriteImpl(const WriteOptions& write_options,
     }
 
     PERF_TIMER_START(write_pre_and_post_process_time);
-  i}
+  }
   std::cout << "db_impl_write:WriteImpl2 \n";
   log::Writer* log_writer = logs_.back().writer;
 
