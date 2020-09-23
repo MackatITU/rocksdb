@@ -416,6 +416,7 @@ mutexlock
 PortPosix:Lock
 mutexlock 
 PortPosix:Lock
+ColumnFamily:InstrumentedMutexLock 
 instrumentedMutexLock 20
 PortPosix:Lock
 instrumentedMutexLock 21
@@ -534,10 +535,12 @@ instrumentedMutexLock 27
 PortPosix:Lock
 instrumentedMutexLock 28
 PortPosix:Lock
+ColumnFamily:MutexLock 
 mutexlock 
 PortPosix:Lock
 mutexlock 
 PortPosix:Lock
+ColumnFamily:GetThreadLocalSuperVersion 
 instrumentedMutexLock 29
 PortPosix:Lock
 mutexlock 
@@ -554,6 +557,8 @@ TXN-MAN:getstripe
 TXN-MAN:aquireLockFromLockmap 
 instrumentedMutexLock 31
 PortPosix:Lock
+db_impl_write:WriteImpl2 
+db_impl_write:WriteToWAL 
 MemTable:addvalue 
 TXN-MAN:getLockMap 
 TXN-MAN:getstripe 
@@ -565,6 +570,8 @@ instrumentedMutexLock 32
 PortPosix:Lock
 instrumentedMutexLock 33
 PortPosix:Lock
+db_impl_write:WriteImpl2 
+db_impl_write:WriteToWAL 
 MemTable:addvalue 
 TXN-MAN:getLockMap 
 TXN-MAN:getstripe 
@@ -577,6 +584,8 @@ TXN-MAN:getstripe
 TXN-MAN:aquireLockFromLockmap 
 instrumentedMutexLock 35
 PortPosix:Lock
+db_impl_write:WriteImpl2 
+db_impl_write:WriteToWAL 
 MemTable:addvalue 
 TXN-MAN:getLockMap 
 TXN-MAN:getstripe 
@@ -604,6 +613,8 @@ TXN-MAN:getstripe
 TXN-MAN:aquireLockFromLockmap 
 instrumentedMutexLock 39
 PortPosix:Lock
+db_impl_write:WriteImpl2 
+db_impl_write:WriteToWAL 
 MemTable:addvalue 
 TXN-MAN:getLockMap 
 TXN-MAN:getstripe 
@@ -623,6 +634,8 @@ TXN-MAN:getstripe
 TXN-MAN:unlock 
 instrumentedMutexLock 43
 PortPosix:Lock
+db_impl_write:WriteImpl2 
+db_impl_write:WriteToWAL 
 MemTable:addvalue 
 TXN-MAN:getLockMap 
 TXN-MAN:getstripe 
@@ -653,6 +666,7 @@ instrumentedMutexLock 53
 PortPosix:Lock
 instrumentedMutexLock 54
 PortPosix:Lock
+ColumnFamily:MutexLock 
 instrumentedMutexLock 55
 PortPosix:Lock
 instrumentedMutexLock 56

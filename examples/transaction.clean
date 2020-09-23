@@ -1,9 +1,12 @@
+db_impl_write:WriteImpl2 5
 PortPosix:RWLockRead 1
 TXN-MAN:aquireLockFromLockmap 7
 PortPosix:Lock 382
+db_impl_write:WriteToWAL 5
 mutexlock 313
 instrumentedMutexLock 65
 TXN-MAN:unlock 7
+ColumnFamily:GetThreadLocalSuperVersion 1
 TXN-MAN:getLockMap 15
 TXN-MAN:lockmap 1
 writelock 2
@@ -11,6 +14,8 @@ PortPosix:Mutex 1
 readlock 1
 PortPosix:RWLockWrite 2
 TXN-MAN:getstripe 15
+ColumnFamily:MutexLock 2
 MemTable:addvalue 5
 TXN-MAN:tryLock 8
 PortPosix:RWMutex 1
+ColumnFamily:InstrumentedMutexLock 1
