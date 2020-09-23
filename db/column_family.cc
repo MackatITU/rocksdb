@@ -37,6 +37,9 @@
 #include "util/autovector.h"
 #include "util/cast_util.h"
 #include "util/compression.h"
+#include <stdio.h>
+#include <iostream>
+
 
 namespace ROCKSDB_NAMESPACE {
 
@@ -62,6 +65,7 @@ ColumnFamilyHandleImpl::~ColumnFamilyHandleImpl() {
     ColumnFamilyOptions initial_cf_options_copy = cfd_->initial_cf_options();
     JobContext job_context(0);
     mutex_->Lock();
+    std::cout << "ColumnFamily:MutexLock \n";
     bool dropped = cfd_->IsDropped();
     if (cfd_->UnrefAndTryDelete()) {
       if (dropped) {
@@ -92,6 +96,7 @@ const std::string& ColumnFamilyHandleImpl::GetName() const {
 Status ColumnFamilyHandleImpl::GetDescriptor(ColumnFamilyDescriptor* desc) {
 #ifndef ROCKSDB_LITE
   // accessing mutable cf-options requires db mutex.
+  std::cout << "ColumnFamily:InstrumentedMutexLock \n";
   InstrumentedMutexLock l(mutex_);
   *desc = ColumnFamilyDescriptor(cfd()->GetName(), cfd()->GetLatestCFOptions());
   return Status::OK();
@@ -1189,9 +1194,10 @@ SuperVersion* ColumnFamilyData::GetThreadLocalSuperVersion(DBImpl* db) {
       sv->version_number != super_version_number_.load()) {
     RecordTick(ioptions_.statistics, NUMBER_SUPERVERSION_ACQUIRES);
     SuperVersion* sv_to_delete = nullptr;
-
+    std::cout << "ColumnFamily:GetThreadLocalSuperVersion \n";
     if (sv && sv->Unref()) {
       RecordTick(ioptions_.statistics, NUMBER_SUPERVERSION_CLEANUPS);
+      
       db->mutex()->Lock();
       // NOTE: underlying resources held by superversion (sst files) might
       // not be released until the next background job.

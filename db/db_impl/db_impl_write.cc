@@ -15,6 +15,9 @@
 #include "options/options_helper.h"
 #include "test_util/sync_point.h"
 #include "util/cast_util.h"
+#include <stdio.h>
+#include <iostream>
+
 
 namespace ROCKSDB_NAMESPACE {
 // Convenience methods
@@ -77,6 +80,7 @@ Status DBImpl::WriteImpl(const WriteOptions& write_options,
   if (tracer_) {
     InstrumentedMutexLock lock(&trace_mutex_);
     if (tracer_) {
+      std::cout << "db_impl_write:WriteImpl \n";
       tracer_->Write(my_batch);
     }
   }
@@ -219,7 +223,7 @@ Status DBImpl::WriteImpl(const WriteOptions& write_options,
   uint64_t last_sequence = kMaxSequenceNumber;
 
   mutex_.Lock();
-
+  
   bool need_log_sync = write_options.sync;
   bool need_log_dir_sync = need_log_sync && !log_dir_synced_;
   if (!two_write_queues_ || !disable_memtable) {
@@ -238,7 +242,8 @@ Status DBImpl::WriteImpl(const WriteOptions& write_options,
     }
 
     PERF_TIMER_START(write_pre_and_post_process_time);
-  }
+  i}
+  std::cout << "db_impl_write:WriteImpl2 \n";
   log::Writer* log_writer = logs_.back().writer;
 
   mutex_.Unlock();
@@ -482,6 +487,7 @@ Status DBImpl::PipelinedWriteImpl(const WriteOptions& write_options,
     PERF_TIMER_STOP(write_pre_and_post_process_time);
     w.status = PreprocessWrite(write_options, &need_log_sync, &write_context);
     PERF_TIMER_START(write_pre_and_post_process_time);
+    std::cout << "db_impl_write:PipelinedWriteImpl \n";
     log::Writer* log_writer = logs_.back().writer;
     mutex_.Unlock();
 
@@ -1017,6 +1023,7 @@ IOStatus DBImpl::WriteToWAL(const WriteBatch& merged_batch,
   if (UNLIKELY(needs_locking)) {
     log_write_mutex_.Lock();
   }
+  std::cout << "db_impl_write:WriteToWAL \n";
   IOStatus io_s = log_writer->AddRecord(log_entry);
 
   if (UNLIKELY(needs_locking)) {
@@ -1118,6 +1125,7 @@ IOStatus DBImpl::ConcurrentWriteToWAL(
   // We need to lock log_write_mutex_ since logs_ and alive_log_files might be
   // pushed back concurrently
   log_write_mutex_.Lock();
+  std::cout << "db_impl_write:ConcurrentWriteToWAL \n";
   if (merged_batch == write_group.leader->batch) {
     write_group.leader->log_used = logfile_number_;
   } else if (write_with_wal > 1) {
@@ -1158,6 +1166,7 @@ Status DBImpl::WriteRecoverableState() {
     SequenceNumber next_seq;
     if (two_write_queues_) {
       log_write_mutex_.Lock();
+      std::cout << "db_impl_write:WriteRecoverableState \n";
     }
     SequenceNumber seq;
     if (two_write_queues_) {
