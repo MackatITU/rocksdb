@@ -7,7 +7,6 @@ import java.util.Set;
 public class CritCleaner {
 
     public static void main(String[] args) {
-
         if(args.length != 2) {
             System.out.println("Script must be run with 2 arguments.");
             System.out.println("First argument is input file, second argument is output file.");
@@ -42,7 +41,6 @@ public class CritCleaner {
             e.printStackTrace();
         }
     }
-
     //Method to fill simple Map/dictionary up with critical section string names and a corresponding times-hit value
     public static HashMap<String,Integer> FillCritMap(File filepath){
         HashMap<String,Integer> critMap = new HashMap<>();
@@ -78,6 +76,4 @@ public class CritCleaner {
             aList.add(x);
         return aList;
     }
-
 }
-
